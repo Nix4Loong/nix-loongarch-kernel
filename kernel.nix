@@ -2,12 +2,13 @@
   lib,
   fetchurl,
   buildLinux,
-  kernelPatches,
+  linuxKernel,
   ...
 }:
 let
   pname = "linux-nix4loong";
   version = "6.17.7";
+  commonPatches = linuxKernel.kernelPatches;
 in
 buildLinux {
   inherit pname;
@@ -20,8 +21,8 @@ buildLinux {
   };
 
   kernelPatches = [
-    kernelPatches.bridge_stp_helper
-    kernelPatches.request_key_helper
+    commonPatches.bridge_stp_helper
+    commonPatches.request_key_helper
     {
       name = "add-motorcomm-yt6801-support";
       patch = ./patches/0141-BACKPORT-DEEPIN-ethernet-Add-motorcomm-yt6801-suppor.patch;
