@@ -33,6 +33,10 @@
         linuxPackages-nix4loong = final.linuxKernel.packagesFor (final.callPackage ./kernel.nix { });
       };
 
+      nixosModules.default = {
+        boot.kernelPackages = linuxPackages;
+      };
+
       hydraJobs.${system} = {
         inherit kernel;
       };
