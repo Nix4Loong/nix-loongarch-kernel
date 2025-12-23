@@ -31,6 +31,10 @@ buildLinux {
       name = "yt6801-fix-build-on-6.8";
       patch = ./patches/0143-DEEPIN-ethernet-yt6801-fix-build-on-6.8.patch;
     }
+    {
+      name = "add-ls7a-gpio-interrupt-support";
+      patch = ./patches/0217-AOSCOS-gpio-loongson-64bit-Add-LS7A-GPIO-interrupt-s.patch;
+    }
   ];
 
   extraMeta = {
