@@ -1,0 +1,86 @@
+From 2df84d5cd60900976b6a8e1aa31db61f32a73a90 Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <uwu@icenowy.me>
+Date: Mon, 17 Jun 2024 18:58:45 +0800
+Subject: [PATCH 17/24] drm/amdgpu: make duplicated EOP packet for GFX7/8 have
+ real content
+
+The duplication of EOP packets for GFX7/8, with the former one have
+seq-1 written and the latter one have seq written, seems to confuse some
+hardware platform (e.g. Loongson 7A series PCIe controllers).
+
+Make the content of the duplicated EOP packet the same with the real
+one, only masking any possible interrupts.
+
+Fixes: bf26da927a1c ("drm/amdgpu: add cache flush workaround to gfx8 emit_fence")
+Fixes: a2e73f56fa62 ("drm/amdgpu: Add support for CIK parts")
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+Signed-off-by: darkyzhou <me@zqy.io>
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c | 11 ++++-------
+ drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c | 12 ++++--------
+ 2 files changed, 8 insertions(+), 15 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
+index 2b7aba22e..4027ab074 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
+@@ -2125,9 +2125,7 @@ static void gfx_v7_0_ring_emit_fence_gfx(struct amdgpu_ring *ring, u64 addr,
+ 	bool int_sel = flags & AMDGPU_FENCE_FLAG_INT;
+ 	bool exec = flags & AMDGPU_FENCE_FLAG_EXEC;
+ 
+-	/* Workaround for cache flush problems. First send a dummy EOP
+-	 * event down the pipe with seq one below.
+-	 */
++	/* Workaround for cache flush problems, send EOP twice. */
+ 	amdgpu_ring_write(ring, PACKET3(PACKET3_EVENT_WRITE_EOP, 4));
+ 	amdgpu_ring_write(ring, (EOP_TCL1_ACTION_EN |
+ 				 EOP_TC_ACTION_EN |
+@@ -2135,11 +2133,10 @@ static void gfx_v7_0_ring_emit_fence_gfx(struct amdgpu_ring *ring, u64 addr,
+ 				 EVENT_INDEX(5)));
+ 	amdgpu_ring_write(ring, addr & 0xfffffffc);
+ 	amdgpu_ring_write(ring, (upper_32_bits(addr) & 0xffff) |
+-				DATA_SEL(1) | INT_SEL(0));
+-	amdgpu_ring_write(ring, lower_32_bits(seq - 1));
+-	amdgpu_ring_write(ring, upper_32_bits(seq - 1));
++				DATA_SEL(write64bit ? 2 : 1) | INT_SEL(0));
++	amdgpu_ring_write(ring, lower_32_bits(seq));
++	amdgpu_ring_write(ring, upper_32_bits(seq));
+ 
+-	/* Then send the real EOP event down the pipe. */
+ 	amdgpu_ring_write(ring, PACKET3(PACKET3_EVENT_WRITE_EOP, 4));
+ 	amdgpu_ring_write(ring, (EOP_TCL1_ACTION_EN |
+ 				 EOP_TC_ACTION_EN |
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
+index 8a81713d9..74eebf1d3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
+@@ -6113,9 +6113,7 @@ static void gfx_v8_0_ring_emit_fence_gfx(struct amdgpu_ring *ring, u64 addr,
+ 	bool int_sel = flags & AMDGPU_FENCE_FLAG_INT;
+ 	bool exec = flags & AMDGPU_FENCE_FLAG_EXEC;
+ 
+-	/* Workaround for cache flush problems. First send a dummy EOP
+-	 * event down the pipe with seq one below.
+-	 */
++	/* Workaround for cache flush problems, send EOP twice. */
+ 	amdgpu_ring_write(ring, PACKET3(PACKET3_EVENT_WRITE_EOP, 4));
+ 	amdgpu_ring_write(ring, (EOP_TCL1_ACTION_EN |
+ 				 EOP_TC_ACTION_EN |
+@@ -6124,12 +6122,10 @@ static void gfx_v8_0_ring_emit_fence_gfx(struct amdgpu_ring *ring, u64 addr,
+ 				 EVENT_INDEX(5)));
+ 	amdgpu_ring_write(ring, addr & 0xfffffffc);
+ 	amdgpu_ring_write(ring, (upper_32_bits(addr) & 0xffff) |
+-				DATA_SEL(1) | INT_SEL(0));
+-	amdgpu_ring_write(ring, lower_32_bits(seq - 1));
+-	amdgpu_ring_write(ring, upper_32_bits(seq - 1));
++				DATA_SEL(write64bit ? 2 : 1) | INT_SEL(0));
++	amdgpu_ring_write(ring, lower_32_bits(seq));
++	amdgpu_ring_write(ring, upper_32_bits(seq));
+ 
+-	/* Then send the real EOP event down the pipe:
+-	 * EVENT_WRITE_EOP - flush caches, send int */
+ 	amdgpu_ring_write(ring, PACKET3(PACKET3_EVENT_WRITE_EOP, 4));
+ 	amdgpu_ring_write(ring, (EOP_TCL1_ACTION_EN |
+ 				 EOP_TC_ACTION_EN |
+-- 
+2.51.2
+

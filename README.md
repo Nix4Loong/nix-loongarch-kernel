@@ -1,10 +1,14 @@
 # nix-loongarch-kernel
 
-Linux 6.17 kernel with additional patches for LoongArch platforms.
+Linux stable kernel with additional patches for LoongArch platforms.
 
 ## Patches
 
 - Motorcomm YT6801 NIC driver
+- HWMon support for Loongson 3 family processors
+- PixArt PS/2 touchpad driver
+- Legacy firmware boot support and AMD GPU stability fixes
+- Full patch list: https://loongfans.cn/pages/sdk.html
 
 ## Binary Cache
 
@@ -65,4 +69,4 @@ Note: Using an overlay may not hit the binary cache due to different derivation 
 
 ## Acknowledgements
 
-Special thanks to the [AOSC](https://aosc.io) community and all the patch authors for their contributions to LoongArch Linux support.
+Special thanks to [loongfans.cn](https://loongfans.cn/pages/sdk.html) and all the patch authors for their contributions to LoongArch Linux support.
