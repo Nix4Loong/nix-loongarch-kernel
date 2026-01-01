@@ -6,7 +6,7 @@
   ...
 }:
 let
-  pname = "linux-nix4loong";
+  pname = "linux";
   version = "6.18.2";
   suffix = "-nix4loong";
 
@@ -40,6 +40,8 @@ buildLinux {
     CPU_HWMON = yes;
     CAN_LSCANFD = yes;
     CAN_LSCANFD_PLATFORM = module;
+
+    CPU_HAS_LBT = yes;
   };
 
   src = fetchurl {
