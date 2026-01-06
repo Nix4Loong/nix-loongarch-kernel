@@ -2,6 +2,8 @@
 
 Linux stable kernel with additional patches for LoongArch platforms.
 
+Check available versions in [tags](https://github.com/Nix4Loong/nix-loongarch-kernel/tags), though staying up-to-date with `main` is recommended.
+
 ## Patches
 
 - Motorcomm YT6801 NIC driver
