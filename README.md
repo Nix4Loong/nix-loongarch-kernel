@@ -18,7 +18,6 @@ To speed up builds, you can use the binary cache provided by nix4loong.cn:
 nix.extraOptions = ''
   extra-substituters = https://cache.nix4loong.cn
   extra-trusted-public-keys = cache.nix4loong.cn-1:zmkwLihdSUyy6OFSVgvK3br0EaUEczLiJgDfvOmm3pA=
-  extra-system-features = gccarch-la64v1.0 gccarch-loongarch64
 '';
 ```
 
