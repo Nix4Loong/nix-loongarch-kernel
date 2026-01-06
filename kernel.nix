@@ -7,7 +7,7 @@
 }:
 let
   pname = "linux";
-  version = "6.18.2";
+  version = "6.18.3";
   suffix = "-nix4loong";
 
   patchesDir = ./patches;
