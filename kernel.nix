@@ -40,8 +40,6 @@ buildLinux {
     CPU_HWMON = yes;
     CAN_LSCANFD = yes;
     CAN_LSCANFD_PLATFORM = module;
-
-    CPU_HAS_LBT = yes;
   };
 
   src = fetchurl {
