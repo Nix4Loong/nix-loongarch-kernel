@@ -70,4 +70,4 @@ Note: Using an overlay may not hit the binary cache due to different derivation 
 
 ## Acknowledgements
 
-Special thanks to [loongfans.cn](https://loongfans.cn/pages/sdk.html) and all the patch authors for their contributions to LoongArch Linux support.
+Special thanks to [loongfans.cn](https://loongfans.cn/pages/sdk.html) and all the patch authors for their contributions.
