@@ -2,7 +2,7 @@
   description = "Linux kernel with patches for LoongArch platforms";
 
   inputs = {
-    nixpkgs.url = "github:loongson-community/nixpkgs?ref=loong-release-25.11";
+    nixpkgs.url = "github:loongson-community/nixpkgs?ref=loong-master";
   };
 
   outputs =
