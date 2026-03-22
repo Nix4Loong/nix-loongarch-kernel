@@ -1,4 +1,4 @@
-From dfc276fa71212e94118d0dfbc6c24253c87a87ac Mon Sep 17 00:00:00 2001
+From dffe6bda8d6fd320d4a8c8e30cf7a63698ed2a27 Mon Sep 17 00:00:00 2001
 From: Miao Wang <shankerwangmiao@gmail.com>
 Date: Thu, 25 Jul 2024 16:09:19 +0800
 Subject: [PATCH 12/24] AOSCOS: loongarch: fix missing dependency info in DSDT
@@ -28,7 +28,7 @@ Signed-off-by: Kexy Biscuit <kexybiscuit@aosc.io>
  2 files changed, 49 insertions(+)
 
 diff --git a/arch/loongarch/include/asm/acpi.h b/arch/loongarch/include/asm/acpi.h
-index fcf2cc1b3..fa0202d02 100644
+index fcf2cc1..fa0202d 100644
 --- a/arch/loongarch/include/asm/acpi.h
 +++ b/arch/loongarch/include/asm/acpi.h
 @@ -51,6 +51,8 @@ extern void acpi_arch_os_table_override (struct acpi_table_header *existing_tabl
@@ -41,7 +41,7 @@ index fcf2cc1b3..fa0202d02 100644
  #endif /* !CONFIG_ACPI */
  
 diff --git a/arch/loongarch/kernel/legacy_boot.c b/arch/loongarch/kernel/legacy_boot.c
-index 7043bfd03..3ec69ffd8 100644
+index 7043bfd..3ec69ff 100644
 --- a/arch/loongarch/kernel/legacy_boot.c
 +++ b/arch/loongarch/kernel/legacy_boot.c
 @@ -617,6 +617,53 @@ void acpi_arch_pci_probe_root_dev_filter(struct resource_entry *entry)
@@ -99,5 +99,5 @@ index 7043bfd03..3ec69ffd8 100644
  	return have_bpi;
  }
 -- 
-2.51.2
+2.53.0
 

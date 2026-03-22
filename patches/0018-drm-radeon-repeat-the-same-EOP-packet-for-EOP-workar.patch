@@ -1,4 +1,4 @@
-From 19f1acf65250e197501c19fa6b1ebdfdf9ef8f0b Mon Sep 17 00:00:00 2001
+From 4203c112b5cd07adb83d8f6253d2c69c05993f08 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Mon, 17 Jun 2024 18:58:46 +0800
 Subject: [PATCH 18/24] drm/radeon: repeat the same EOP packet for EOP
@@ -16,7 +16,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 2 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/radeon/cik.c b/drivers/gpu/drm/radeon/cik.c
-index 51a3e0fc2..0c5bdf87e 100644
+index 51a3e0f..0c5bdf8 100644
 --- a/drivers/gpu/drm/radeon/cik.c
 +++ b/drivers/gpu/drm/radeon/cik.c
 @@ -3543,9 +3543,7 @@ void cik_fence_gfx_ring_emit(struct radeon_device *rdev,
@@ -43,5 +43,5 @@ index 51a3e0fc2..0c5bdf87e 100644
  	radeon_ring_write(ring, (EOP_TCL1_ACTION_EN |
  				 EOP_TC_ACTION_EN |
 -- 
-2.51.2
+2.53.0
 

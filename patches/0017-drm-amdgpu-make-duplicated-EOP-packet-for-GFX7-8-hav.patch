@@ -1,4 +1,4 @@
-From 2df84d5cd60900976b6a8e1aa31db61f32a73a90 Mon Sep 17 00:00:00 2001
+From 710f0eac00227a91d61664d27b6e26d804e65ecf Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Mon, 17 Jun 2024 18:58:45 +0800
 Subject: [PATCH 17/24] drm/amdgpu: make duplicated EOP packet for GFX7/8 have
@@ -21,7 +21,7 @@ Signed-off-by: darkyzhou <me@zqy.io>
  2 files changed, 8 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
-index 2b7aba22e..4027ab074 100644
+index 2b7aba2..4027ab0 100644
 --- a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
 @@ -2125,9 +2125,7 @@ static void gfx_v7_0_ring_emit_fence_gfx(struct amdgpu_ring *ring, u64 addr,
@@ -51,7 +51,7 @@ index 2b7aba22e..4027ab074 100644
  	amdgpu_ring_write(ring, (EOP_TCL1_ACTION_EN |
  				 EOP_TC_ACTION_EN |
 diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-index 8a81713d9..74eebf1d3 100644
+index 1c87375..e7ff0bc 100644
 --- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
 @@ -6113,9 +6113,7 @@ static void gfx_v8_0_ring_emit_fence_gfx(struct amdgpu_ring *ring, u64 addr,
@@ -82,5 +82,5 @@ index 8a81713d9..74eebf1d3 100644
  	amdgpu_ring_write(ring, (EOP_TCL1_ACTION_EN |
  				 EOP_TC_ACTION_EN |
 -- 
-2.51.2
+2.53.0
 

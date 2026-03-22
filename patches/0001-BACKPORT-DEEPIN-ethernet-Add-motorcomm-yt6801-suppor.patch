@@ -1,4 +1,4 @@
-From 262c7ab525e3d522c903e7b8410ba842aa992992 Mon Sep 17 00:00:00 2001
+From 96f5589ee9080e62d13b2e228632605ad1de439f Mon Sep 17 00:00:00 2001
 From: Yanteng Si <siyanteng@loongson.cn>
 Date: Wed, 17 Jul 2024 18:25:37 +0800
 Subject: [PATCH 01/24] BACKPORT: DEEPIN: ethernet: Add motorcomm yt6801
@@ -25,11 +25,11 @@ Link: https://github.com/deepin-community/kernel/commit/3be8f9c563edaa97e28e3154
 [Kexy: Resolved minor conflicts in
  arch/arm64/configs/deepin_arm64_desktop_defconfig,
  arch/loongarch/configs/deepin_loongarch_desktop_defconfig,
- arch/loongarch/configs/loongson3_defconfig, and
+ arch/loongarch/configs/loongson64_defconfig, and
  arch/x86/configs/deepin_x86_desktop_defconfig]
 Signed-off-by: Kexy Biscuit <kexybiscuit@aosc.io>
 ---
- arch/loongarch/configs/loongson3_defconfig    |    1 +
+ arch/loongarch/configs/loongson64_defconfig   |    1 +
  drivers/net/ethernet/Kconfig                  |    1 +
  drivers/net/ethernet/Makefile                 |    1 +
  drivers/net/ethernet/motorcomm/Kconfig        |   27 +
@@ -68,10 +68,10 @@ Signed-off-by: Kexy Biscuit <kexybiscuit@aosc.io>
  create mode 100644 drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac.h
  create mode 100644 drivers/net/ethernet/motorcomm/yt6801/fuxi-os.h
 
-diff --git a/arch/loongarch/configs/loongson3_defconfig b/arch/loongarch/configs/loongson3_defconfig
-index 3e838c229..de046599c 100644
---- a/arch/loongarch/configs/loongson3_defconfig
-+++ b/arch/loongarch/configs/loongson3_defconfig
+diff --git a/arch/loongarch/configs/loongson64_defconfig b/arch/loongarch/configs/loongson64_defconfig
+index a14db1a..809efd2 100644
+--- a/arch/loongarch/configs/loongson64_defconfig
++++ b/arch/loongarch/configs/loongson64_defconfig
 @@ -629,6 +629,7 @@ CONFIG_IDPF=y
  CONFIG_8139CP=m
  CONFIG_8139TOO=m
@@ -81,7 +81,7 @@ index 3e838c229..de046599c 100644
  # CONFIG_NET_VENDOR_ROCKER is not set
  # CONFIG_NET_VENDOR_SAMSUNG is not set
 diff --git a/drivers/net/ethernet/Kconfig b/drivers/net/ethernet/Kconfig
-index aead145dd..7c82e7364 100644
+index 4a1b368..e6df943 100644
 --- a/drivers/net/ethernet/Kconfig
 +++ b/drivers/net/ethernet/Kconfig
 @@ -126,6 +126,7 @@ source "drivers/net/ethernet/mellanox/Kconfig"
@@ -93,7 +93,7 @@ index aead145dd..7c82e7364 100644
  source "drivers/net/ethernet/microsoft/Kconfig"
  source "drivers/net/ethernet/moxa/Kconfig"
 diff --git a/drivers/net/ethernet/Makefile b/drivers/net/ethernet/Makefile
-index 998dd628b..ec269721e 100644
+index 2e18df8..b2b6491 100644
 --- a/drivers/net/ethernet/Makefile
 +++ b/drivers/net/ethernet/Makefile
 @@ -63,6 +63,7 @@ obj-$(CONFIG_NET_VENDOR_MELLANOX) += mellanox/
@@ -103,10 +103,10 @@ index 998dd628b..ec269721e 100644
 +obj-$(CONFIG_NET_VENDOR_MOTORCOMM) += motorcomm/
  obj-$(CONFIG_NET_VENDOR_MICROSEMI) += mscc/
  obj-$(CONFIG_NET_VENDOR_MOXART) += moxa/
- obj-$(CONFIG_NET_VENDOR_MYRI) += myricom/
+ obj-$(CONFIG_NET_VENDOR_MUCSE) += mucse/
 diff --git a/drivers/net/ethernet/motorcomm/Kconfig b/drivers/net/ethernet/motorcomm/Kconfig
 new file mode 100644
-index 000000000..2d0589289
+index 0000000..2d05892
 --- /dev/null
 +++ b/drivers/net/ethernet/motorcomm/Kconfig
 @@ -0,0 +1,27 @@
@@ -139,7 +139,7 @@ index 000000000..2d0589289
 +endif # NET_VENDOR_MOTORCOMM
 diff --git a/drivers/net/ethernet/motorcomm/Makefile b/drivers/net/ethernet/motorcomm/Makefile
 new file mode 100644
-index 000000000..af0a439d5
+index 0000000..af0a439
 --- /dev/null
 +++ b/drivers/net/ethernet/motorcomm/Makefile
 @@ -0,0 +1,4 @@
@@ -149,7 +149,7 @@ index 000000000..af0a439d5
 +obj-$(CONFIG_YT6801) += yt6801/
 diff --git a/drivers/net/ethernet/motorcomm/yt6801/Makefile b/drivers/net/ethernet/motorcomm/yt6801/Makefile
 new file mode 100644
-index 000000000..93b5c4510
+index 0000000..93b5c45
 --- /dev/null
 +++ b/drivers/net/ethernet/motorcomm/yt6801/Makefile
 @@ -0,0 +1,15 @@
@@ -170,7 +170,7 @@ index 000000000..93b5c4510
 +	fuxi-gmac-debugfs.o
 diff --git a/drivers/net/ethernet/motorcomm/yt6801/fuxi-dbg.h b/drivers/net/ethernet/motorcomm/yt6801/fuxi-dbg.h
 new file mode 100644
-index 000000000..24282f8e2
+index 0000000..24282f8
 --- /dev/null
 +++ b/drivers/net/ethernet/motorcomm/yt6801/fuxi-dbg.h
 @@ -0,0 +1,15 @@
@@ -192,7 +192,7 @@ index 000000000..24282f8e2
 \ No newline at end of file
 diff --git a/drivers/net/ethernet/motorcomm/yt6801/fuxi-efuse.c b/drivers/net/ethernet/motorcomm/yt6801/fuxi-efuse.c
 new file mode 100644
-index 000000000..ae4ca3d59
+index 0000000..ae4ca3d
 --- /dev/null
 +++ b/drivers/net/ethernet/motorcomm/yt6801/fuxi-efuse.c
 @@ -0,0 +1,1344 @@
@@ -1543,7 +1543,7 @@ index 000000000..ae4ca3d59
 \ No newline at end of file
 diff --git a/drivers/net/ethernet/motorcomm/yt6801/fuxi-efuse.h b/drivers/net/ethernet/motorcomm/yt6801/fuxi-efuse.h
 new file mode 100644
-index 000000000..fa0446958
+index 0000000..fa04469
 --- /dev/null
 +++ b/drivers/net/ethernet/motorcomm/yt6801/fuxi-efuse.h
 @@ -0,0 +1,25 @@
@@ -1575,7 +1575,7 @@ index 000000000..fa0446958
 \ No newline at end of file
 diff --git a/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-common.c b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-common.c
 new file mode 100644
-index 000000000..63cbf948c
+index 0000000..63cbf94
 --- /dev/null
 +++ b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-common.c
 @@ -0,0 +1,939 @@
@@ -2520,7 +2520,7 @@ index 000000000..63cbf948c
 +}
 diff --git a/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-debugfs.c b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-debugfs.c
 new file mode 100644
-index 000000000..4596d91b6
+index 0000000..4596d91
 --- /dev/null
 +++ b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-debugfs.c
 @@ -0,0 +1,787 @@
@@ -3313,7 +3313,7 @@ index 000000000..4596d91b6
 +#endif /* HAVE_XLGMAC_DEBUG_FS */
 diff --git a/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-desc.c b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-desc.c
 new file mode 100644
-index 000000000..969d84eb4
+index 0000000..969d84e
 --- /dev/null
 +++ b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-desc.c
 @@ -0,0 +1,601 @@
@@ -3920,7 +3920,7 @@ index 000000000..969d84eb4
 +}
 diff --git a/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-ethtool.c b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-ethtool.c
 new file mode 100644
-index 000000000..05aa42f90
+index 0000000..05aa42f
 --- /dev/null
 +++ b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-ethtool.c
 @@ -0,0 +1,1114 @@
@@ -5040,7 +5040,7 @@ index 000000000..05aa42f90
 +}
 diff --git a/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-hw.c b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-hw.c
 new file mode 100644
-index 000000000..051796836
+index 0000000..0517968
 --- /dev/null
 +++ b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-hw.c
 @@ -0,0 +1,6256 @@
@@ -11302,7 +11302,7 @@ index 000000000..051796836
 +}
 diff --git a/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-net.c b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-net.c
 new file mode 100644
-index 000000000..b8734efb3
+index 0000000..b8734ef
 --- /dev/null
 +++ b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-net.c
 @@ -0,0 +1,2329 @@
@@ -13637,7 +13637,7 @@ index 000000000..b8734efb3
 +}
 diff --git a/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-pci.c b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-pci.c
 new file mode 100644
-index 000000000..f6f8f4f6a
+index 0000000..f6f8f4f
 --- /dev/null
 +++ b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-pci.c
 @@ -0,0 +1,250 @@
@@ -13893,7 +13893,7 @@ index 000000000..f6f8f4f6a
 +MODULE_LICENSE("Dual BSD/GPL");
 diff --git a/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-phy.c b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-phy.c
 new file mode 100644
-index 000000000..88066a110
+index 0000000..88066a1
 --- /dev/null
 +++ b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-phy.c
 @@ -0,0 +1,256 @@
@@ -14155,7 +14155,7 @@ index 000000000..88066a110
 +}
 diff --git a/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-reg.h b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-reg.h
 new file mode 100644
-index 000000000..65d6288e6
+index 0000000..65d6288
 --- /dev/null
 +++ b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-reg.h
 @@ -0,0 +1,1894 @@
@@ -16055,7 +16055,7 @@ index 000000000..65d6288e6
 +#endif /* __FUXI_GMAC_REG_H__ */
 diff --git a/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac.h b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac.h
 new file mode 100644
-index 000000000..ea01ebdad
+index 0000000..ea01ebd
 --- /dev/null
 +++ b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac.h
 @@ -0,0 +1,934 @@
@@ -16995,7 +16995,7 @@ index 000000000..ea01ebdad
 +#endif /* __FUXI_GMAC_H__ */
 diff --git a/drivers/net/ethernet/motorcomm/yt6801/fuxi-os.h b/drivers/net/ethernet/motorcomm/yt6801/fuxi-os.h
 new file mode 100644
-index 000000000..1a40267e1
+index 0000000..1a40267
 --- /dev/null
 +++ b/drivers/net/ethernet/motorcomm/yt6801/fuxi-os.h
 @@ -0,0 +1,515 @@
@@ -17515,5 +17515,5 @@ index 000000000..1a40267e1
 +
 +#endif /* __FUXI_OS_H__ */
 -- 
-2.51.2
+2.53.0
 

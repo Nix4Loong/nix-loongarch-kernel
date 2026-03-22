@@ -1,4 +1,4 @@
-From c69d11fdb338939692a1ff9cf54e5e4ab53917b0 Mon Sep 17 00:00:00 2001
+From 5448bbc8e2334abb2833c0b41371104dea2306ca Mon Sep 17 00:00:00 2001
 From: Binbin Zhou <zhoubinbin@loongson.cn>
 Date: Sat, 18 Oct 2025 12:46:21 +0800
 Subject: [PATCH 06/24] LOONGSON: dmaengine: loongson2-mcdma: New driver for
@@ -28,10 +28,10 @@ Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
  create mode 100644 drivers/dma/loongson2-mcdma.c
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 1c6f52b32..de13aacdc 100644
+index c7e2b6f..292fa7a 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -14598,6 +14598,7 @@ S:	Maintained
+@@ -14795,6 +14795,7 @@ S:	Maintained
  F:	Documentation/devicetree/bindings/dma/loongson,ls2k0300-dma.yaml
  F:	Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.yaml
  F:	drivers/dma/loongson2-apb-dma.c
@@ -40,7 +40,7 @@ index 1c6f52b32..de13aacdc 100644
  LOONGSON LS2X I2C DRIVER
  M:	Binbin Zhou <zhoubinbin@loongson.cn>
 diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
-index b8a74b179..6d8e2548e 100644
+index 8bb0a11..77fe88b 100644
 --- a/drivers/dma/Kconfig
 +++ b/drivers/dma/Kconfig
 @@ -399,6 +399,17 @@ config LOONGSON2_APB_DMA
@@ -62,7 +62,7 @@ index b8a74b179..6d8e2548e 100644
  	bool "NXP LPC18xx/43xx DMA MUX for PL080"
  	depends on ARCH_LPC18XX || COMPILE_TEST
 diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
-index a54d76883..2df372d11 100644
+index a54d768..2df372d 100644
 --- a/drivers/dma/Makefile
 +++ b/drivers/dma/Makefile
 @@ -51,6 +51,7 @@ obj-y += idxd/
@@ -75,7 +75,7 @@ index a54d76883..2df372d11 100644
  obj-$(CONFIG_MILBEAUT_HDMAC) += milbeaut-hdmac.o
 diff --git a/drivers/dma/loongson2-mcdma.c b/drivers/dma/loongson2-mcdma.c
 new file mode 100644
-index 000000000..322596878
+index 0000000..3225968
 --- /dev/null
 +++ b/drivers/dma/loongson2-mcdma.c
 @@ -0,0 +1,761 @@
@@ -841,5 +841,5 @@ index 000000000..322596878
 +MODULE_AUTHOR("Loongson Technology Corporation Limited");
 +MODULE_LICENSE("GPL");
 -- 
-2.51.2
+2.53.0
 

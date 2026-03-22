@@ -1,4 +1,4 @@
-From d4d89e72a78051c4d0336b797b347d44e19f32d0 Mon Sep 17 00:00:00 2001
+From d8576e024edd71ca9fe506f270153399b180d667 Mon Sep 17 00:00:00 2001
 From: Huacai Chen <chenhuacai@loongson.cn>
 Date: Tue, 20 Feb 2024 15:49:58 +0800
 Subject: [PATCH 20/24] drm/radeon: Call mmiowb() at the end of
@@ -48,7 +48,7 @@ Signed-off-by: Huacai Chen <chenhuacai@loongson.cn>
  1 file changed, 1 insertion(+)
 
 diff --git a/drivers/gpu/drm/radeon/radeon_ring.c b/drivers/gpu/drm/radeon/radeon_ring.c
-index 581ae20c4..346f0e49b 100644
+index 581ae20..346f0e4 100644
 --- a/drivers/gpu/drm/radeon/radeon_ring.c
 +++ b/drivers/gpu/drm/radeon/radeon_ring.c
 @@ -185,6 +185,7 @@ void radeon_ring_commit(struct radeon_device *rdev, struct radeon_ring *ring,
@@ -60,5 +60,5 @@ index 581ae20c4..346f0e49b 100644
  
  /**
 -- 
-2.51.2
+2.53.0
 

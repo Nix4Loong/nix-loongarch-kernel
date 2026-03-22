@@ -1,4 +1,4 @@
-From 45cc6baf120f38f61dc38aa3baae9ef493c57918 Mon Sep 17 00:00:00 2001
+From a8bc925fb5020abcb24801080a0996711bd8ec72 Mon Sep 17 00:00:00 2001
 From: root <baimingcong@uniontech.com>
 Date: Tue, 23 Jul 2024 11:00:20 +0800
 Subject: [PATCH 02/24] DEEPIN: ethernet: yt6801: fix build on >= 6.8
@@ -14,7 +14,7 @@ Signed-off-by: Kexy Biscuit <kexybiscuit@aosc.io>
  1 file changed, 18 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-ethtool.c b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-ethtool.c
-index 05aa42f90..d0989eac9 100644
+index 05aa42f..d0989ea 100644
 --- a/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-ethtool.c
 +++ b/drivers/net/ethernet/motorcomm/yt6801/fuxi-gmac-ethtool.c
 @@ -262,8 +262,8 @@ static void fxgmac_get_reta(struct fxgmac_pdata *pdata, u32 *indir)
@@ -106,5 +106,5 @@ index 05aa42f90..d0989eac9 100644
  	return 0;
  }
 -- 
-2.51.2
+2.53.0
 

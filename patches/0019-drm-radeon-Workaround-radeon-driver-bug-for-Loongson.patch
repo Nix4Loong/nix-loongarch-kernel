@@ -1,4 +1,4 @@
-From 53472cfdfbb49c5f5cd2fae0b26da28e5a8ba376 Mon Sep 17 00:00:00 2001
+From e82da2cf765acc16b2907219846960113a6b2a16 Mon Sep 17 00:00:00 2001
 From: Huacai Chen <chenhuacai@loongson.cn>
 Date: Mon, 22 Feb 2021 10:53:47 +0800
 Subject: [PATCH 19/24] drm/radeon: Workaround radeon driver bug for Loongson
@@ -17,7 +17,7 @@ Signed-off-by: Zhijie Zhang <zhangzhijie@loongson.cn>
  4 files changed, 4 insertions(+)
 
 diff --git a/drivers/gpu/drm/radeon/cik.c b/drivers/gpu/drm/radeon/cik.c
-index 0c5bdf87e..19ae47147 100644
+index 0c5bdf8..19ae471 100644
 --- a/drivers/gpu/drm/radeon/cik.c
 +++ b/drivers/gpu/drm/radeon/cik.c
 @@ -8090,6 +8090,7 @@ int cik_irq_process(struct radeon_device *rdev)
@@ -29,7 +29,7 @@ index 0c5bdf87e..19ae47147 100644
  
  	/* make sure wptr hasn't changed while processing */
 diff --git a/drivers/gpu/drm/radeon/evergreen.c b/drivers/gpu/drm/radeon/evergreen.c
-index bc4ab7161..1ce165c62 100644
+index bc4ab71..1ce165c 100644
 --- a/drivers/gpu/drm/radeon/evergreen.c
 +++ b/drivers/gpu/drm/radeon/evergreen.c
 @@ -4919,6 +4919,7 @@ int evergreen_irq_process(struct radeon_device *rdev)
@@ -41,7 +41,7 @@ index bc4ab7161..1ce165c62 100644
  
  	/* make sure wptr hasn't changed while processing */
 diff --git a/drivers/gpu/drm/radeon/r600.c b/drivers/gpu/drm/radeon/r600.c
-index 8b62f7faa..88e38fb3f 100644
+index 8b62f7f..88e38fb 100644
 --- a/drivers/gpu/drm/radeon/r600.c
 +++ b/drivers/gpu/drm/radeon/r600.c
 @@ -4328,6 +4328,7 @@ int r600_irq_process(struct radeon_device *rdev)
@@ -53,7 +53,7 @@ index 8b62f7faa..88e38fb3f 100644
  
  	/* make sure wptr hasn't changed while processing */
 diff --git a/drivers/gpu/drm/radeon/si.c b/drivers/gpu/drm/radeon/si.c
-index 26197aceb..2d7eeb781 100644
+index 26197ac..2d7eeb7 100644
 --- a/drivers/gpu/drm/radeon/si.c
 +++ b/drivers/gpu/drm/radeon/si.c
 @@ -6423,6 +6423,7 @@ int si_irq_process(struct radeon_device *rdev)
@@ -65,5 +65,5 @@ index 26197aceb..2d7eeb781 100644
  
  	/* make sure wptr hasn't changed while processing */
 -- 
-2.51.2
+2.53.0
 

@@ -1,4 +1,4 @@
-From 3a6598f2d2195c94e996557b5fe5f61d0e936ba2 Mon Sep 17 00:00:00 2001
+From 989df64d6cc0fbf9663f2c75c1c37607e894f504 Mon Sep 17 00:00:00 2001
 From: Binbin Zhou <zhoubinbin@loongson.cn>
 Date: Thu, 27 Nov 2025 16:02:03 +0800
 Subject: [PATCH 03/24] Input: Add driver for PixArt PS/2 touchpad
@@ -28,7 +28,7 @@ Tested-by: Kexy Biscuit <kexybiscuit@aosc.io>
  create mode 100644 drivers/input/mouse/pixart_ps2.h
 
 diff --git a/drivers/input/mouse/Kconfig b/drivers/input/mouse/Kconfig
-index 833b643f0..8a27a20d0 100644
+index 833b643..8a27a20 100644
 --- a/drivers/input/mouse/Kconfig
 +++ b/drivers/input/mouse/Kconfig
 @@ -69,6 +69,18 @@ config MOUSE_PS2_LOGIPS2PP
@@ -51,7 +51,7 @@ index 833b643f0..8a27a20d0 100644
  	bool "Synaptics PS/2 mouse protocol extension" if EXPERT
  	default y
 diff --git a/drivers/input/mouse/Makefile b/drivers/input/mouse/Makefile
-index a1336d5be..563029551 100644
+index a1336d5..5630295 100644
 --- a/drivers/input/mouse/Makefile
 +++ b/drivers/input/mouse/Makefile
 @@ -32,6 +32,7 @@ psmouse-$(CONFIG_MOUSE_PS2_ELANTECH)	+= elantech.o
@@ -64,7 +64,7 @@ index a1336d5be..563029551 100644
  psmouse-$(CONFIG_MOUSE_PS2_TOUCHKIT)	+= touchkit_ps2.o
 diff --git a/drivers/input/mouse/pixart_ps2.c b/drivers/input/mouse/pixart_ps2.c
 new file mode 100644
-index 000000000..682aa6499
+index 0000000..682aa64
 --- /dev/null
 +++ b/drivers/input/mouse/pixart_ps2.c
 @@ -0,0 +1,310 @@
@@ -380,7 +380,7 @@ index 000000000..682aa6499
 +}
 diff --git a/drivers/input/mouse/pixart_ps2.h b/drivers/input/mouse/pixart_ps2.h
 new file mode 100644
-index 000000000..47a1d040f
+index 0000000..47a1d04
 --- /dev/null
 +++ b/drivers/input/mouse/pixart_ps2.h
 @@ -0,0 +1,36 @@
@@ -421,7 +421,7 @@ index 000000000..47a1d040f
 +
 +#endif  /* _PIXART_PS2_H */
 diff --git a/drivers/input/mouse/psmouse-base.c b/drivers/input/mouse/psmouse-base.c
-index 77ea7da3b..f708b75eb 100644
+index 77ea7da..f708b75 100644
 --- a/drivers/input/mouse/psmouse-base.c
 +++ b/drivers/input/mouse/psmouse-base.c
 @@ -36,6 +36,7 @@
@@ -463,7 +463,7 @@ index 77ea7da3b..f708b75eb 100644
  		if (psmouse_try_protocol(psmouse, PSMOUSE_GENPS,
  					 &max_proto, set_properties, true))
 diff --git a/drivers/input/mouse/psmouse.h b/drivers/input/mouse/psmouse.h
-index 4d8acfe0d..23f7fa724 100644
+index 4d8acfe..23f7fa7 100644
 --- a/drivers/input/mouse/psmouse.h
 +++ b/drivers/input/mouse/psmouse.h
 @@ -69,6 +69,7 @@ enum psmouse_type {
@@ -484,5 +484,5 @@ index 4d8acfe0d..23f7fa724 100644
  	unsigned char pktcnt;
  	unsigned char pktsize;
 -- 
-2.51.2
+2.53.0
 

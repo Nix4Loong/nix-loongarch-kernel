@@ -1,4 +1,4 @@
-From a997feaeee7d14f8a096f56f516b91fea234b262 Mon Sep 17 00:00:00 2001
+From a7b9589f0ee608a8f25d5aeddf0b4abcf42ba7ab Mon Sep 17 00:00:00 2001
 From: Huacai Chen <chenhuacai@loongson.cn>
 Date: Fri, 31 Jan 2025 18:06:30 +0800
 Subject: [PATCH 23/24] USB: core: Enable root_hub's remote wakeup for wakeup
@@ -18,10 +18,10 @@ Signed-off-by: Huacai Chen <chenhuacai@loongson.cn>
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/usb/core/hub.c b/drivers/usb/core/hub.c
-index 256fe8c86..390f82b48 100644
+index be50d03..daebe21 100644
 --- a/drivers/usb/core/hub.c
 +++ b/drivers/usb/core/hub.c
-@@ -3522,6 +3522,7 @@ int usb_port_suspend(struct usb_device *udev, pm_message_t msg)
+@@ -3523,6 +3523,7 @@ int usb_port_suspend(struct usb_device *udev, pm_message_t msg)
  			if (PMSG_IS_AUTO(msg))
  				goto err_wakeup;
  		}
@@ -29,7 +29,7 @@ index 256fe8c86..390f82b48 100644
  	}
  
  	/* disable USB2 hardware LPM */
-@@ -3585,8 +3586,10 @@ int usb_port_suspend(struct usb_device *udev, pm_message_t msg)
+@@ -3586,8 +3587,10 @@ int usb_port_suspend(struct usb_device *udev, pm_message_t msg)
  		/* Try to enable USB2 hardware LPM again */
  		usb_enable_usb2_hardware_lpm(udev);
  
@@ -42,5 +42,5 @@ index 256fe8c86..390f82b48 100644
  
  		/* System sleep transitions should never fail */
 -- 
-2.51.2
+2.53.0
 

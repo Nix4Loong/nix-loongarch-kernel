@@ -1,4 +1,4 @@
-From 331dbf4f4bff53c33d6d33ebfead967d300d6554 Mon Sep 17 00:00:00 2001
+From e462a2e0f42129294eff77b46bae488e943fd5c8 Mon Sep 17 00:00:00 2001
 From: Xi Ruoyao <xry111@xry111.site>
 Date: Sat, 21 Jun 2025 16:01:27 +0800
 Subject: [PATCH 16/24] AOSCOS: gpio: loongson-64bit: Add LS7A GPIO interrupt
@@ -31,7 +31,7 @@ Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
  1 file changed, 5 insertions(+)
 
 diff --git a/drivers/gpio/gpio-loongson-64bit.c b/drivers/gpio/gpio-loongson-64bit.c
-index 02f181cb2..140c9d8e0 100644
+index 0fdf15f..6907347 100644
 --- a/drivers/gpio/gpio-loongson-64bit.c
 +++ b/drivers/gpio/gpio-loongson-64bit.c
 @@ -39,6 +39,7 @@ struct loongson_gpio_chip_data {
@@ -52,7 +52,7 @@ index 02f181cb2..140c9d8e0 100644
  	return platform_get_irq(pdev, offset);
  }
  
-@@ -438,6 +442,7 @@ static const struct loongson_gpio_chip_data loongson_gpio_ls7a_data = {
+@@ -439,6 +443,7 @@ static const struct loongson_gpio_chip_data loongson_gpio_ls7a_data = {
  	.in_offset = 0xa00,
  	.out_offset = 0x900,
  	.inten_offset = 0xb00,
@@ -61,5 +61,5 @@ index 02f181cb2..140c9d8e0 100644
  
  /* LS7A2000 chipset GPIO */
 -- 
-2.51.2
+2.53.0
 

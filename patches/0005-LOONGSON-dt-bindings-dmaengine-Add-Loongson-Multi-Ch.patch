@@ -1,4 +1,4 @@
-From b166db964d5aed08ea64b35bebb8e803cbaad923 Mon Sep 17 00:00:00 2001
+From 6ea7f5a1e68a9f9f2ca599a0d45382c46bb848db Mon Sep 17 00:00:00 2001
 From: Binbin Zhou <zhoubinbin@loongson.cn>
 Date: Thu, 23 Oct 2025 20:27:08 +0800
 Subject: [PATCH 05/24] LOONGSON: dt-bindings: dmaengine: Add Loongson
@@ -27,7 +27,7 @@ Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
 
 diff --git a/Documentation/devicetree/bindings/dma/loongson,ls2k0300-dma.yaml b/Documentation/devicetree/bindings/dma/loongson,ls2k0300-dma.yaml
 new file mode 100644
-index 000000000..d5316885c
+index 0000000..d531688
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/dma/loongson,ls2k0300-dma.yaml
 @@ -0,0 +1,78 @@
@@ -110,10 +110,10 @@ index 000000000..d5316885c
 +    };
 +...
 diff --git a/MAINTAINERS b/MAINTAINERS
-index e8f06145f..1c6f52b32 100644
+index e087673..c7e2b6f 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -14591,10 +14591,11 @@ S:	Maintained
+@@ -14788,10 +14788,11 @@ S:	Maintained
  F:	Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
  F:	drivers/gpio/gpio-loongson-64bit.c
  
@@ -127,5 +127,5 @@ index e8f06145f..1c6f52b32 100644
  F:	drivers/dma/loongson2-apb-dma.c
  
 -- 
-2.51.2
+2.53.0
 

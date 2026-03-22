@@ -1,4 +1,4 @@
-From f078b5403edf396707120761b9f4c52557c7cbc2 Mon Sep 17 00:00:00 2001
+From 7a3ace07469b726c7c8066ebc828b766f1e20b45 Mon Sep 17 00:00:00 2001
 From: Ziyao <liziyao@uniontech.com>
 Date: Fri, 22 Aug 2025 17:15:58 +0800
 Subject: [PATCH 15/24] AOSCOS: PCI: Override PCIe bridge supported speeds for
@@ -34,10 +34,10 @@ Signed-off-by: Xi Ruoyao <xry111@xry111.site>
  1 file changed, 36 insertions(+)
 
 diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-index b9c252aa6..4323649d4 100644
+index fd86f72..e593d18 100644
 --- a/drivers/pci/quirks.c
 +++ b/drivers/pci/quirks.c
-@@ -1956,6 +1956,42 @@ DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL,	PCI_DEVICE_ID_INTEL_E7525_MCH,	quir
+@@ -1966,6 +1966,42 @@ DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL,	PCI_DEVICE_ID_INTEL_E7525_MCH,	quir
  
  DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_HUAWEI, 0x1610, PCI_CLASS_BRIDGE_PCI, 8, quirk_pcie_mch);
  
@@ -81,5 +81,5 @@ index b9c252aa6..4323649d4 100644
   * HiSilicon KunPeng920 and KunPeng930 have devices appear as PCI but are
   * actually on the AMBA bus. These fake PCI devices can support SVA via
 -- 
-2.51.2
+2.53.0
 

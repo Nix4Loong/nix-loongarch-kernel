@@ -7,7 +7,7 @@
 }:
 let
   pname = "linux";
-  version = "6.18.7";
+  version = "6.19.9";
   suffix = "-nix4loong";
 
   patchesDir = ./patches;
@@ -44,7 +44,7 @@ buildLinux {
 
   src = fetchurl {
     url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
-    hash = "sha256-tyak0Vz5rgYhm1bYeCB3bjTYn7wTflX7VKm5wwFbjx4=";
+    hash = "sha256-wWBoo68S45Q97jse71fKcCKcBpEov6EYT7P0iyGdVb8=";
   };
 
   kernelPatches = commonPatches ++ localPatches;

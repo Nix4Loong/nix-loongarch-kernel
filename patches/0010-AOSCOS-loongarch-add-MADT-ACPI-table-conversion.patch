@@ -1,4 +1,4 @@
-From 941cf05f4b664ac3b822ad13dc1c0cb740d510cc Mon Sep 17 00:00:00 2001
+From 1a80b71df8770afd162263a36af525fbbcc2fc15 Mon Sep 17 00:00:00 2001
 From: Miao Wang <shankerwangmiao@gmail.com>
 Date: Sat, 20 Jul 2024 06:32:15 +0800
 Subject: [PATCH 10/24] AOSCOS: loongarch: add MADT ACPI table conversion
@@ -22,7 +22,7 @@ Signed-off-by: Kexy Biscuit <kexybiscuit@aosc.io>
  4 files changed, 321 insertions(+)
 
 diff --git a/arch/loongarch/include/asm/acpi.h b/arch/loongarch/include/asm/acpi.h
-index 7376840fa..1f5905e0a 100644
+index 7376840..1f5905e 100644
 --- a/arch/loongarch/include/asm/acpi.h
 +++ b/arch/loongarch/include/asm/acpi.h
 @@ -45,6 +45,11 @@ static inline u32 get_acpi_id_for_cpu(unsigned int cpu)
@@ -38,7 +38,7 @@ index 7376840fa..1f5905e0a 100644
  
  #define ACPI_TABLE_UPGRADE_MAX_PHYS ARCH_LOW_ADDRESS_LIMIT
 diff --git a/arch/loongarch/kernel/legacy_boot.c b/arch/loongarch/kernel/legacy_boot.c
-index 30c01c8b2..841d8db85 100644
+index 30c01c8..841d8db 100644
 --- a/arch/loongarch/kernel/legacy_boot.c
 +++ b/arch/loongarch/kernel/legacy_boot.c
 @@ -1,7 +1,13 @@
@@ -382,7 +382,7 @@ index 30c01c8b2..841d8db85 100644
  	return have_bpi;
  }
 diff --git a/drivers/acpi/tables.c b/drivers/acpi/tables.c
-index 57fc8bc56..21e755526 100644
+index 4286e4a..f6fc6bb 100644
 --- a/drivers/acpi/tables.c
 +++ b/drivers/acpi/tables.c
 @@ -693,6 +693,7 @@ acpi_status acpi_os_table_override(struct acpi_table_header *existing_table,
@@ -402,10 +402,10 @@ index 57fc8bc56..21e755526 100644
  
  int __init acpi_table_init(void)
 diff --git a/include/linux/acpi.h b/include/linux/acpi.h
-index 5ff5d99f6..e8a9c6a5e 100644
+index fbf0c3a..5703b83 100644
 --- a/include/linux/acpi.h
 +++ b/include/linux/acpi.h
-@@ -779,6 +779,16 @@ const char *acpi_get_subsystem_id(acpi_handle handle);
+@@ -790,6 +790,16 @@ const char *acpi_get_subsystem_id(acpi_handle handle);
  int acpi_mrrm_max_mem_region(void);
  #endif
  
@@ -423,5 +423,5 @@ index 5ff5d99f6..e8a9c6a5e 100644
  
  #define acpi_disabled 1
 -- 
-2.51.2
+2.53.0
 
