@@ -1,7 +1,7 @@
-From d8576e024edd71ca9fe506f270153399b180d667 Mon Sep 17 00:00:00 2001
+From 77435f27987a0968a02e469626374f782511cfa5 Mon Sep 17 00:00:00 2001
 From: Huacai Chen <chenhuacai@loongson.cn>
 Date: Tue, 20 Feb 2024 15:49:58 +0800
-Subject: [PATCH 20/24] drm/radeon: Call mmiowb() at the end of
+Subject: [PATCH 18/22] drm/radeon: Call mmiowb() at the end of
  radeon_ring_commit()
 
 Commit fb24ea52f78e0d595852e ("drivers: Remove explicit invocations of

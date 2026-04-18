@@ -1,7 +1,7 @@
-From 1a80b71df8770afd162263a36af525fbbcc2fc15 Mon Sep 17 00:00:00 2001
+From e3c3560fce1da7dec2cb2e0f3742ce4822bcb71b Mon Sep 17 00:00:00 2001
 From: Miao Wang <shankerwangmiao@gmail.com>
 Date: Sat, 20 Jul 2024 06:32:15 +0800
-Subject: [PATCH 10/24] AOSCOS: loongarch: add MADT ACPI table conversion
+Subject: [PATCH 08/22] AOSCOS: loongarch: add MADT ACPI table conversion
 
 On machines with legacy firmware with BPI version BPI01000, i.e. the
 older version, the content of the MADT ACPI table is not following the
@@ -402,10 +402,10 @@ index 4286e4a..f6fc6bb 100644
  
  int __init acpi_table_init(void)
 diff --git a/include/linux/acpi.h b/include/linux/acpi.h
-index fbf0c3a..5703b83 100644
+index 4d2f0be..3019f32 100644
 --- a/include/linux/acpi.h
 +++ b/include/linux/acpi.h
-@@ -790,6 +790,16 @@ const char *acpi_get_subsystem_id(acpi_handle handle);
+@@ -791,6 +791,16 @@ const char *acpi_get_subsystem_id(acpi_handle handle);
  int acpi_mrrm_max_mem_region(void);
  #endif
  

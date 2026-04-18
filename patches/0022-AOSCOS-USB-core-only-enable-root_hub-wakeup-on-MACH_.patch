@@ -1,7 +1,7 @@
-From f89f1c628ea7e2fe312376fa197a23dc5eb26761 Mon Sep 17 00:00:00 2001
+From 946f85b89caddd8b416112f960da0e7a45bc4537 Mon Sep 17 00:00:00 2001
 From: Mingcong Bai <jeffbai@aosc.io>
 Date: Wed, 26 Feb 2025 11:43:02 +0800
-Subject: [PATCH 24/24] AOSCOS: USB: core: only enable root_hub wakeup on
+Subject: [PATCH 22/22] AOSCOS: USB: core: only enable root_hub wakeup on
  MACH_LOONGSON64
 
 The previous attempt to fix USB remote wake on Loongson 7A platforms broke
@@ -27,7 +27,7 @@ Signed-off-by: Kexy Biscuit <kexybiscuit@aosc.io>
  1 file changed, 4 insertions(+)
 
 diff --git a/drivers/usb/core/hub.c b/drivers/usb/core/hub.c
-index daebe21..1bd2310 100644
+index e90a72b..69b5f37 100644
 --- a/drivers/usb/core/hub.c
 +++ b/drivers/usb/core/hub.c
 @@ -3523,7 +3523,9 @@ int usb_port_suspend(struct usb_device *udev, pm_message_t msg)

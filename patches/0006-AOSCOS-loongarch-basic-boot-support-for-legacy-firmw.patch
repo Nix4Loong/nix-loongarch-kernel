@@ -1,7 +1,7 @@
-From 5e1c3fd3d2ea1b33de569047227d127eb59811ca Mon Sep 17 00:00:00 2001
+From 4603a00f1fc439eda94717a5b08294cdc52238d2 Mon Sep 17 00:00:00 2001
 From: Miao Wang <shankerwangmiao@gmail.com>
 Date: Wed, 17 Jul 2024 09:03:32 +0800
-Subject: [PATCH 08/24] AOSCOS: loongarch: basic boot support for legacy
+Subject: [PATCH 06/22] AOSCOS: loongarch: basic boot support for legacy
  firmware
 
 The addresses passed from legacy firmware in efi system tables, the
@@ -31,11 +31,11 @@ Signed-off-by: Kexy Biscuit <kexybiscuit@aosc.io>
  3 files changed, 37 insertions(+)
 
 diff --git a/arch/loongarch/kernel/efi.c b/arch/loongarch/kernel/efi.c
-index 52c21c8..5cecd60 100644
+index 69dd83f..5d818e3 100644
 --- a/arch/loongarch/kernel/efi.c
 +++ b/arch/loongarch/kernel/efi.c
-@@ -98,6 +98,23 @@ static void __init init_screen_info(void)
- 	memblock_reserve(__screen_info_lfb_base(&screen_info), screen_info.lfb_size);
+@@ -99,6 +99,23 @@ static void __init init_primary_display(void)
+ 			 sysfb_primary_display.screen.lfb_size);
  }
  
 +static void __init fix_initrd_table(const efi_config_table_t *config_tables,
@@ -58,7 +58,7 @@ index 52c21c8..5cecd60 100644
  void __init efi_init(void)
  {
  	int size;
-@@ -123,6 +140,7 @@ void __init efi_init(void)
+@@ -124,6 +141,7 @@ void __init efi_init(void)
  
  	size = sizeof(efi_config_table_t);
  	config_tables = early_memremap(efi_config_table, efi_nr_tables * size);

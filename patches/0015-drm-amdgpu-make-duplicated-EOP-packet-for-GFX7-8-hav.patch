@@ -1,7 +1,7 @@
-From 710f0eac00227a91d61664d27b6e26d804e65ecf Mon Sep 17 00:00:00 2001
+From f68c4cc575e5352b82560c3e78cd0b9a33f064b7 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Mon, 17 Jun 2024 18:58:45 +0800
-Subject: [PATCH 17/24] drm/amdgpu: make duplicated EOP packet for GFX7/8 have
+Subject: [PATCH 15/22] drm/amdgpu: make duplicated EOP packet for GFX7/8 have
  real content
 
 The duplication of EOP packets for GFX7/8, with the former one have
@@ -21,10 +21,10 @@ Signed-off-by: darkyzhou <me@zqy.io>
  2 files changed, 8 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
-index 2b7aba2..4027ab0 100644
+index 2b69145..8547b5b 100644
 --- a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
-@@ -2125,9 +2125,7 @@ static void gfx_v7_0_ring_emit_fence_gfx(struct amdgpu_ring *ring, u64 addr,
+@@ -2117,9 +2117,7 @@ static void gfx_v7_0_ring_emit_fence_gfx(struct amdgpu_ring *ring, u64 addr,
  	bool int_sel = flags & AMDGPU_FENCE_FLAG_INT;
  	bool exec = flags & AMDGPU_FENCE_FLAG_EXEC;
  
@@ -35,7 +35,7 @@ index 2b7aba2..4027ab0 100644
  	amdgpu_ring_write(ring, PACKET3(PACKET3_EVENT_WRITE_EOP, 4));
  	amdgpu_ring_write(ring, (EOP_TCL1_ACTION_EN |
  				 EOP_TC_ACTION_EN |
-@@ -2135,11 +2133,10 @@ static void gfx_v7_0_ring_emit_fence_gfx(struct amdgpu_ring *ring, u64 addr,
+@@ -2127,11 +2125,10 @@ static void gfx_v7_0_ring_emit_fence_gfx(struct amdgpu_ring *ring, u64 addr,
  				 EVENT_INDEX(5)));
  	amdgpu_ring_write(ring, addr & 0xfffffffc);
  	amdgpu_ring_write(ring, (upper_32_bits(addr) & 0xffff) |
@@ -51,10 +51,10 @@ index 2b7aba2..4027ab0 100644
  	amdgpu_ring_write(ring, (EOP_TCL1_ACTION_EN |
  				 EOP_TC_ACTION_EN |
 diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-index 1c87375..e7ff0bc 100644
+index a6b4c8f..fe4be55 100644
 --- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-@@ -6113,9 +6113,7 @@ static void gfx_v8_0_ring_emit_fence_gfx(struct amdgpu_ring *ring, u64 addr,
+@@ -6139,9 +6139,7 @@ static void gfx_v8_0_ring_emit_fence_gfx(struct amdgpu_ring *ring, u64 addr,
  	bool int_sel = flags & AMDGPU_FENCE_FLAG_INT;
  	bool exec = flags & AMDGPU_FENCE_FLAG_EXEC;
  
@@ -65,7 +65,7 @@ index 1c87375..e7ff0bc 100644
  	amdgpu_ring_write(ring, PACKET3(PACKET3_EVENT_WRITE_EOP, 4));
  	amdgpu_ring_write(ring, (EOP_TCL1_ACTION_EN |
  				 EOP_TC_ACTION_EN |
-@@ -6124,12 +6122,10 @@ static void gfx_v8_0_ring_emit_fence_gfx(struct amdgpu_ring *ring, u64 addr,
+@@ -6150,12 +6148,10 @@ static void gfx_v8_0_ring_emit_fence_gfx(struct amdgpu_ring *ring, u64 addr,
  				 EVENT_INDEX(5)));
  	amdgpu_ring_write(ring, addr & 0xfffffffc);
  	amdgpu_ring_write(ring, (upper_32_bits(addr) & 0xffff) |

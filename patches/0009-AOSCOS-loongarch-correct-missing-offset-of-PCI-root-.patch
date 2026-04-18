@@ -1,7 +1,7 @@
-From c4e947d8b32a3e71235a62da39a72303274a0d3f Mon Sep 17 00:00:00 2001
+From e3c2366084dee82f0a17505d70888f5c35beea7e Mon Sep 17 00:00:00 2001
 From: Miao Wang <shankerwangmiao@gmail.com>
 Date: Wed, 24 Jul 2024 09:06:27 +0800
-Subject: [PATCH 11/24] AOSCOS: loongarch: correct missing offset of PCI root
+Subject: [PATCH 09/22] AOSCOS: loongarch: correct missing offset of PCI root
  controller in DSDT table
 
 On machines with legacy firmware with BPI version BPI01000, the PCI root
@@ -85,7 +85,7 @@ index 841d8db..7043bfd 100644
  	return have_bpi;
  }
 diff --git a/drivers/acpi/pci_root.c b/drivers/acpi/pci_root.c
-index 74ade41..e51c8d3 100644
+index 4a882e9..f641433 100644
 --- a/drivers/acpi/pci_root.c
 +++ b/drivers/acpi/pci_root.c
 @@ -909,6 +909,7 @@ int acpi_pci_probe_root_resources(struct acpi_pci_root_info *info)
@@ -97,10 +97,10 @@ index 74ade41..e51c8d3 100644
  				acpi_pci_root_remap_iospace(&device->fwnode,
  						entry);
 diff --git a/include/linux/pci-acpi.h b/include/linux/pci-acpi.h
-index 078225b..1c22ca4 100644
+index c0c54ba..99fc805 100644
 --- a/include/linux/pci-acpi.h
 +++ b/include/linux/pci-acpi.h
-@@ -133,6 +133,10 @@ static inline void pci_acpi_remove_edr_notifier(struct pci_dev *pdev) { }
+@@ -134,6 +134,10 @@ static inline void pci_acpi_remove_edr_notifier(struct pci_dev *pdev) { }
  int pci_acpi_set_companion_lookup_hook(struct acpi_device *(*func)(struct pci_dev *));
  void pci_acpi_clear_companion_lookup_hook(void);
  
