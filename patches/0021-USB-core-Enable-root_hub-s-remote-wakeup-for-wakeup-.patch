@@ -1,7 +1,7 @@
-From a7b9589f0ee608a8f25d5aeddf0b4abcf42ba7ab Mon Sep 17 00:00:00 2001
+From 78c75e73771149b8a32bb92caef80b9b4fb5467b Mon Sep 17 00:00:00 2001
 From: Huacai Chen <chenhuacai@loongson.cn>
 Date: Fri, 31 Jan 2025 18:06:30 +0800
-Subject: [PATCH 23/24] USB: core: Enable root_hub's remote wakeup for wakeup
+Subject: [PATCH 21/22] USB: core: Enable root_hub's remote wakeup for wakeup
  sources
 
 Now we only enable the remote wakeup function for the USB wakeup source
@@ -18,7 +18,7 @@ Signed-off-by: Huacai Chen <chenhuacai@loongson.cn>
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/usb/core/hub.c b/drivers/usb/core/hub.c
-index be50d03..daebe21 100644
+index 24960ba..e90a72b 100644
 --- a/drivers/usb/core/hub.c
 +++ b/drivers/usb/core/hub.c
 @@ -3523,6 +3523,7 @@ int usb_port_suspend(struct usb_device *udev, pm_message_t msg)

@@ -1,7 +1,7 @@
-From 5448bbc8e2334abb2833c0b41371104dea2306ca Mon Sep 17 00:00:00 2001
+From 0ba7b9e29851ca32d7f745248eb8e27545a593e5 Mon Sep 17 00:00:00 2001
 From: Binbin Zhou <zhoubinbin@loongson.cn>
 Date: Sat, 18 Oct 2025 12:46:21 +0800
-Subject: [PATCH 06/24] LOONGSON: dmaengine: loongson2-mcdma: New driver for
+Subject: [PATCH 04/22] LOONGSON: dmaengine: loongson2-mcdma: New driver for
  the Loongson Multi-Channel DMA controller
 
 This DMA controller appears in Loongson-2K0300 and Loongson-2K3000.
@@ -28,10 +28,10 @@ Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
  create mode 100644 drivers/dma/loongson2-mcdma.c
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index c7e2b6f..292fa7a 100644
+index edee6d9..fa8e1f7 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -14795,6 +14795,7 @@ S:	Maintained
+@@ -14962,6 +14962,7 @@ S:	Maintained
  F:	Documentation/devicetree/bindings/dma/loongson,ls2k0300-dma.yaml
  F:	Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.yaml
  F:	drivers/dma/loongson2-apb-dma.c
@@ -40,7 +40,7 @@ index c7e2b6f..292fa7a 100644
  LOONGSON LS2X I2C DRIVER
  M:	Binbin Zhou <zhoubinbin@loongson.cn>
 diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
-index 8bb0a11..77fe88b 100644
+index 66cda7c..077cbc3 100644
 --- a/drivers/dma/Kconfig
 +++ b/drivers/dma/Kconfig
 @@ -399,6 +399,17 @@ config LOONGSON2_APB_DMA

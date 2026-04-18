@@ -1,7 +1,7 @@
-From 4203c112b5cd07adb83d8f6253d2c69c05993f08 Mon Sep 17 00:00:00 2001
+From 5d4242f89398b5a09dbfd68dcb48f2adaed68a29 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Mon, 17 Jun 2024 18:58:46 +0800
-Subject: [PATCH 18/24] drm/radeon: repeat the same EOP packet for EOP
+Subject: [PATCH 16/22] drm/radeon: repeat the same EOP packet for EOP
  workaround on CIK
 
 Ths first EOP packet with a sequence number as seq-1 seems to confuse

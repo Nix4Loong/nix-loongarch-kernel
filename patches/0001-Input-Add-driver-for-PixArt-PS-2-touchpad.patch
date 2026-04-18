@@ -1,7 +1,7 @@
-From 989df64d6cc0fbf9663f2c75c1c37607e894f504 Mon Sep 17 00:00:00 2001
+From 39cf5539fe468ca1fa196baf0a97d62d670a0a0c Mon Sep 17 00:00:00 2001
 From: Binbin Zhou <zhoubinbin@loongson.cn>
 Date: Thu, 27 Nov 2025 16:02:03 +0800
-Subject: [PATCH 03/24] Input: Add driver for PixArt PS/2 touchpad
+Subject: [PATCH 01/22] Input: Add driver for PixArt PS/2 touchpad
 
 This patch introduces a driver for the PixArt PS/2 touchpad, which
 supports both clickpad and touchpad types.
@@ -421,7 +421,7 @@ index 0000000..47a1d04
 +
 +#endif  /* _PIXART_PS2_H */
 diff --git a/drivers/input/mouse/psmouse-base.c b/drivers/input/mouse/psmouse-base.c
-index 77ea7da..f708b75 100644
+index ff8cd2d..08295d6 100644
 --- a/drivers/input/mouse/psmouse-base.c
 +++ b/drivers/input/mouse/psmouse-base.c
 @@ -36,6 +36,7 @@

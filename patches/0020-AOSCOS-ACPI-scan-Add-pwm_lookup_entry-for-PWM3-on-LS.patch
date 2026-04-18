@@ -1,7 +1,7 @@
-From 045079b3bb60d7f2e0da98264a37c0d1af39652e Mon Sep 17 00:00:00 2001
+From bfc50d38045a1c6a0db1c47d05797f549c702a47 Mon Sep 17 00:00:00 2001
 From: Xi Ruoyao <xry111@xry111.site>
 Date: Sat, 16 Aug 2025 09:50:44 +0800
-Subject: [PATCH 22/24] AOSCOS: ACPI / scan: Add pwm_lookup_entry for PWM3 on
+Subject: [PATCH 20/22] AOSCOS: ACPI / scan: Add pwm_lookup_entry for PWM3 on
  LS7A
 
 On LoongArch laptops using LG110 GPU for display, LS7A PWM3 is used for
@@ -103,10 +103,10 @@ index 0000000..5363747
 +	acpi_scan_add_handler(&ls7a_pwm_handler);
 +}
 diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
-index b78f6be..8648911 100644
+index e8cdbdb..0bfb58c 100644
 --- a/drivers/acpi/scan.c
 +++ b/drivers/acpi/scan.c
-@@ -2701,6 +2701,7 @@ void __init acpi_scan_init(void)
+@@ -2834,6 +2834,7 @@ void __init acpi_scan_init(void)
  	acpi_pnp_init();
  	acpi_power_resources_init();
  	acpi_init_lpit();

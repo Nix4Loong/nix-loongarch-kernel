@@ -1,7 +1,7 @@
-From 6ea7f5a1e68a9f9f2ca599a0d45382c46bb848db Mon Sep 17 00:00:00 2001
+From 79e01ff2b8261d871fa1c204371632f82f03082c Mon Sep 17 00:00:00 2001
 From: Binbin Zhou <zhoubinbin@loongson.cn>
 Date: Thu, 23 Oct 2025 20:27:08 +0800
-Subject: [PATCH 05/24] LOONGSON: dt-bindings: dmaengine: Add Loongson
+Subject: [PATCH 03/22] LOONGSON: dt-bindings: dmaengine: Add Loongson
  Multi-Channel DMA controller
 
 The Loongson-2K0300/Loongson-2K3000 have built-in multi-channel DMA
@@ -110,10 +110,10 @@ index 0000000..d531688
 +    };
 +...
 diff --git a/MAINTAINERS b/MAINTAINERS
-index e087673..c7e2b6f 100644
+index d1cc0e1..edee6d9 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -14788,10 +14788,11 @@ S:	Maintained
+@@ -14955,10 +14955,11 @@ S:	Maintained
  F:	Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
  F:	drivers/gpio/gpio-loongson-64bit.c
  

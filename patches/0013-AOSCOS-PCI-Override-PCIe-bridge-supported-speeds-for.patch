@@ -1,7 +1,7 @@
-From 7a3ace07469b726c7c8066ebc828b766f1e20b45 Mon Sep 17 00:00:00 2001
+From 6facce8824e7365d0dce08543a5cb86f8585b192 Mon Sep 17 00:00:00 2001
 From: Ziyao <liziyao@uniontech.com>
 Date: Fri, 22 Aug 2025 17:15:58 +0800
-Subject: [PATCH 15/24] AOSCOS: PCI: Override PCIe bridge supported speeds for
+Subject: [PATCH 13/22] AOSCOS: PCI: Override PCIe bridge supported speeds for
  older Loongson 3C6000 series steppings
 
 Older steppings of the Loongson 3C6000 series incorrectly report the
@@ -34,10 +34,10 @@ Signed-off-by: Xi Ruoyao <xry111@xry111.site>
  1 file changed, 36 insertions(+)
 
 diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-index fd86f72..e593d18 100644
+index 48946cc..681ed97 100644
 --- a/drivers/pci/quirks.c
 +++ b/drivers/pci/quirks.c
-@@ -1966,6 +1966,42 @@ DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL,	PCI_DEVICE_ID_INTEL_E7525_MCH,	quir
+@@ -1967,6 +1967,42 @@ DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL,	PCI_DEVICE_ID_INTEL_E7525_MCH,	quir
  
  DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_HUAWEI, 0x1610, PCI_CLASS_BRIDGE_PCI, 8, quirk_pcie_mch);
  

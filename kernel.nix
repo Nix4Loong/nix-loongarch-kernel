@@ -7,8 +7,9 @@
 }:
 let
   pname = "linux";
-  version = "6.19.9";
+  version = "7.0";
   suffix = "-nix4loong";
+  modVersion = lib.versions.pad 3 version;
 
   patchesDir = ./patches;
   localPatches =
@@ -31,7 +32,7 @@ in
 buildLinux {
   inherit pname;
   version = "${version}${suffix}";
-  modDirVersion = "${version}${suffix}";
+  modDirVersion = "${modVersion}${suffix}";
 
   structuredExtraConfig = with lib.kernel; {
     LOCALVERSION = freeform suffix;
@@ -40,11 +41,12 @@ buildLinux {
     CPU_HWMON = yes;
     CAN_LSCANFD = yes;
     CAN_LSCANFD_PLATFORM = module;
+    DWMAC_MOTORCOMM = module;
   };
 
   src = fetchurl {
     url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
-    hash = "sha256-wWBoo68S45Q97jse71fKcCKcBpEov6EYT7P0iyGdVb8=";
+    hash = "sha256-u39tgLOHx1e30Uu5MCj8uQ95PFwNNnc27oFaEAs4kfA=";
   };
 
   kernelPatches = commonPatches ++ localPatches;
