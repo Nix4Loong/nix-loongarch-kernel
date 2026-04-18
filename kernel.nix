@@ -9,6 +9,7 @@ let
   pname = "linux";
   version = "7.0";
   suffix = "-nix4loong";
+  modVersion = lib.versions.pad 3 version;
 
   patchesDir = ./patches;
   localPatches =
@@ -31,7 +32,7 @@ in
 buildLinux {
   inherit pname;
   version = "${version}${suffix}";
-  modDirVersion = "7.0.0${suffix}";
+  modDirVersion = "${modVersion}${suffix}";
 
   structuredExtraConfig = with lib.kernel; {
     LOCALVERSION = freeform suffix;
