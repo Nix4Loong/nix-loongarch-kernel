@@ -1,7 +1,7 @@
-From 946f85b89caddd8b416112f960da0e7a45bc4537 Mon Sep 17 00:00:00 2001
+From f24e1fd8ef6c2d132233305a53606dd2d72434ca Mon Sep 17 00:00:00 2001
 From: Mingcong Bai <jeffbai@aosc.io>
 Date: Wed, 26 Feb 2025 11:43:02 +0800
-Subject: [PATCH 22/22] AOSCOS: USB: core: only enable root_hub wakeup on
+Subject: [PATCH 21/29] AOSCOS: USB: core: only enable root_hub wakeup on
  MACH_LOONGSON64
 
 The previous attempt to fix USB remote wake on Loongson 7A platforms broke
@@ -22,15 +22,16 @@ Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
 Link: https://t.me/c/1109254909/816220
 Link: https://t.me/c/1109254909/820298
 Signed-off-by: Kexy Biscuit <kexybiscuit@aosc.io>
+Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
 ---
  drivers/usb/core/hub.c | 4 ++++
  1 file changed, 4 insertions(+)
 
 diff --git a/drivers/usb/core/hub.c b/drivers/usb/core/hub.c
-index e90a72b..69b5f37 100644
+index e6d6fab..13ffcaf 100644
 --- a/drivers/usb/core/hub.c
 +++ b/drivers/usb/core/hub.c
-@@ -3523,7 +3523,9 @@ int usb_port_suspend(struct usb_device *udev, pm_message_t msg)
+@@ -3536,7 +3536,9 @@ int usb_port_suspend(struct usb_device *udev, pm_message_t msg)
  			if (PMSG_IS_AUTO(msg))
  				goto err_wakeup;
  		}
@@ -40,7 +41,7 @@ index e90a72b..69b5f37 100644
  	}
  
  	/* disable USB2 hardware LPM */
-@@ -3589,7 +3591,9 @@ int usb_port_suspend(struct usb_device *udev, pm_message_t msg)
+@@ -3602,7 +3604,9 @@ int usb_port_suspend(struct usb_device *udev, pm_message_t msg)
  
  		if (udev->do_remote_wakeup) {
  			(void) usb_disable_remote_wakeup(udev);
@@ -51,5 +52,5 @@ index e90a72b..69b5f37 100644
   err_wakeup:
  
 -- 
-2.53.0
+2.54.0
 

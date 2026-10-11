@@ -7,7 +7,7 @@
 }:
 let
   pname = "linux";
-  version = "7.0";
+  version = "7.2.9";
   suffix = "-nix4loong";
   modVersion = lib.versions.pad 3 version;
 
@@ -39,14 +39,14 @@ buildLinux {
 
     MOUSE_PS2_PIXART = yes;
     CPU_HWMON = yes;
-    CAN_LSCANFD = yes;
-    CAN_LSCANFD_PLATFORM = module;
+    CAN_LOONGSON_CANFD = module;
     DWMAC_MOTORCOMM = module;
+    LOONGSON2_APB_CMC_DMA = module;
   };
 
   src = fetchurl {
     url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
-    hash = "sha256-u39tgLOHx1e30Uu5MCj8uQ95PFwNNnc27oFaEAs4kfA=";
+    hash = "sha256-tMXfvlGjZKbH8DhpIA+IyOH3dANTkAXxS3/GvJG42Lo=";
   };
 
   kernelPatches = commonPatches ++ localPatches;

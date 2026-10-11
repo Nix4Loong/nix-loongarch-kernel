@@ -1,7 +1,7 @@
-From 756da436e8ede735871336606898e27febacbe6d Mon Sep 17 00:00:00 2001
+From a2e1f3d14ff575ed33b95a5594588890e574d949 Mon Sep 17 00:00:00 2001
 From: Miao Wang <shankerwangmiao@gmail.com>
 Date: Tue, 13 Aug 2024 16:05:28 +0800
-Subject: [PATCH 11/22] AOSCOS: loongarch: fix DMA address offset
+Subject: [PATCH 10/29] AOSCOS: loongarch: fix DMA address offset
 
 Loongarch CPUs are using HT bus interface, which is only 40-bit wide,
 to communicate with the bridge chipset. However, the actual memory
@@ -39,6 +39,7 @@ eliminating the need of DMA address translation on the kernel side.
 
 Signed-off-by: Miao Wang <shankerwangmiao@gmail.com>
 Signed-off-by: Kexy Biscuit <kexybiscuit@aosc.io>
+Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
 ---
  arch/loongarch/kernel/legacy_boot.c | 27 +++++++++++++++++++++++++++
  1 file changed, 27 insertions(+)
@@ -89,5 +90,5 @@ index 3ec69ff..2888e2b 100644
  
  void acpi_arch_os_table_override (struct acpi_table_header *existing_table, struct acpi_table_header **new_table){
 -- 
-2.53.0
+2.54.0
 

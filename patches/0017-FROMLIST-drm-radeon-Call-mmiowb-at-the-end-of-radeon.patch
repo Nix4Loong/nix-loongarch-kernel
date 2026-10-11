@@ -1,7 +1,7 @@
-From 77435f27987a0968a02e469626374f782511cfa5 Mon Sep 17 00:00:00 2001
+From 027d4c4faf97811d8e42c22595db047f03b076aa Mon Sep 17 00:00:00 2001
 From: Huacai Chen <chenhuacai@loongson.cn>
 Date: Tue, 20 Feb 2024 15:49:58 +0800
-Subject: [PATCH 18/22] drm/radeon: Call mmiowb() at the end of
+Subject: [PATCH 17/29] FROMLIST: drm/radeon: Call mmiowb() at the end of
  radeon_ring_commit()
 
 Commit fb24ea52f78e0d595852e ("drivers: Remove explicit invocations of
@@ -43,12 +43,16 @@ radeon 0000:04:00.0: scheduling IB failed (-35).
 Cc: stable@vger.kernel.org
 Signed-off-by: Tianyang Zhang <zhangtianyang@loongson.cn>
 Signed-off-by: Huacai Chen <chenhuacai@loongson.cn>
+
+Link: https://lore.kernel.org/all/20240220074958.3288170-1-chenhuacai@loongson.cn/
+Signed-off-by: Kexy Biscuit <kexybiscuit@aosc.io>
+Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
 ---
  drivers/gpu/drm/radeon/radeon_ring.c | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/drivers/gpu/drm/radeon/radeon_ring.c b/drivers/gpu/drm/radeon/radeon_ring.c
-index 581ae20..346f0e4 100644
+index a5dff07..ed5bd60 100644
 --- a/drivers/gpu/drm/radeon/radeon_ring.c
 +++ b/drivers/gpu/drm/radeon/radeon_ring.c
 @@ -185,6 +185,7 @@ void radeon_ring_commit(struct radeon_device *rdev, struct radeon_ring *ring,
@@ -60,5 +64,5 @@ index 581ae20..346f0e4 100644
  
  /**
 -- 
-2.53.0
+2.54.0
 

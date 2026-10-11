@@ -1,7 +1,7 @@
-From 9db6ae62dddd6c37ef84759c12d16f0f241888a4 Mon Sep 17 00:00:00 2001
+From a8e82d8a3abfe6ce67825766148bb28b2dd73479 Mon Sep 17 00:00:00 2001
 From: Miao Wang <shankerwangmiao@gmail.com>
 Date: Thu, 25 Jul 2024 16:09:19 +0800
-Subject: [PATCH 10/22] AOSCOS: loongarch: fix missing dependency info in DSDT
+Subject: [PATCH 09/29] AOSCOS: loongarch: fix missing dependency info in DSDT
 
 On machines with legacy firmware with BPI01000 version, the devices on
 the LIO bus lackes the dependency on the PCI root controller, causing
@@ -22,16 +22,17 @@ is detected.
 
 Signed-off-by: Miao Wang <shankerwangmiao@gmail.com>
 Signed-off-by: Kexy Biscuit <kexybiscuit@aosc.io>
+Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
 ---
  arch/loongarch/include/asm/acpi.h   |  2 ++
  arch/loongarch/kernel/legacy_boot.c | 47 +++++++++++++++++++++++++++++
  2 files changed, 49 insertions(+)
 
 diff --git a/arch/loongarch/include/asm/acpi.h b/arch/loongarch/include/asm/acpi.h
-index fcf2cc1..fa0202d 100644
+index 6a7299b..7c42fc1 100644
 --- a/arch/loongarch/include/asm/acpi.h
 +++ b/arch/loongarch/include/asm/acpi.h
-@@ -51,6 +51,8 @@ extern void acpi_arch_os_table_override (struct acpi_table_header *existing_tabl
+@@ -48,6 +48,8 @@ extern void acpi_arch_os_table_override (struct acpi_table_header *existing_tabl
  extern void acpi_arch_table_init_complete(void);
  #define ACPI_HAVE_ARCH_PCI_ROOT_RES_FILTER
  extern void acpi_arch_pci_probe_root_dev_filter(struct resource_entry *entry);
@@ -99,5 +100,5 @@ index 7043bfd..3ec69ff 100644
  	return have_bpi;
  }
 -- 
-2.53.0
+2.54.0
 

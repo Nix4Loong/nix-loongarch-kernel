@@ -1,7 +1,7 @@
-From e3c3560fce1da7dec2cb2e0f3742ce4822bcb71b Mon Sep 17 00:00:00 2001
+From cd1fe461456dac3589b3d5ce97822256b19850f3 Mon Sep 17 00:00:00 2001
 From: Miao Wang <shankerwangmiao@gmail.com>
 Date: Sat, 20 Jul 2024 06:32:15 +0800
-Subject: [PATCH 08/22] AOSCOS: loongarch: add MADT ACPI table conversion
+Subject: [PATCH 07/29] AOSCOS: loongarch: add MADT ACPI table conversion
 
 On machines with legacy firmware with BPI version BPI01000, i.e. the
 older version, the content of the MADT ACPI table is not following the
@@ -14,6 +14,7 @@ is detected.
 Signed-off-by: Miao Wang <shankerwangmiao@gmail.com>
 Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
 Signed-off-by: Kexy Biscuit <kexybiscuit@aosc.io>
+Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
 ---
  arch/loongarch/include/asm/acpi.h   |   5 +
  arch/loongarch/kernel/legacy_boot.c | 304 ++++++++++++++++++++++++++++
@@ -22,12 +23,12 @@ Signed-off-by: Kexy Biscuit <kexybiscuit@aosc.io>
  4 files changed, 321 insertions(+)
 
 diff --git a/arch/loongarch/include/asm/acpi.h b/arch/loongarch/include/asm/acpi.h
-index 7376840..1f5905e 100644
+index c05168a..519d640 100644
 --- a/arch/loongarch/include/asm/acpi.h
 +++ b/arch/loongarch/include/asm/acpi.h
-@@ -45,6 +45,11 @@ static inline u32 get_acpi_id_for_cpu(unsigned int cpu)
- 	return acpi_core_pic[cpu_logical_map(cpu)].processor_id;
- }
+@@ -42,6 +42,11 @@ extern void acpi_add_early_pio(void);
+ extern void acpi_remove_early_pio(void);
+ extern int __init parse_acpi_topology(void);
  
 +#define ACPI_HAVE_ARCH_TABLE_OVERRIDE
 +extern void acpi_arch_os_table_override (struct acpi_table_header *existing_table, struct acpi_table_header **new_table);
@@ -402,12 +403,12 @@ index 4286e4a..f6fc6bb 100644
  
  int __init acpi_table_init(void)
 diff --git a/include/linux/acpi.h b/include/linux/acpi.h
-index 4d2f0be..3019f32 100644
+index 60ab50c..4b6b936 100644
 --- a/include/linux/acpi.h
 +++ b/include/linux/acpi.h
-@@ -791,6 +791,16 @@ const char *acpi_get_subsystem_id(acpi_handle handle);
- int acpi_mrrm_max_mem_region(void);
- #endif
+@@ -812,6 +812,16 @@ int acpi_mrrm_max_mem_region(void);
+ 
+ extern bool cmos_rtc_platform_device_present;
  
 +#ifndef ACPI_HAVE_ARCH_TABLE_OVERRIDE
 +static inline void acpi_arch_os_table_override (struct acpi_table_header *existing_table, struct acpi_table_header **new_table){
@@ -423,5 +424,5 @@ index 4d2f0be..3019f32 100644
  
  #define acpi_disabled 1
 -- 
-2.53.0
+2.54.0
 

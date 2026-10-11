@@ -1,7 +1,7 @@
-From 1e71f6455aee462d3fa2e92f332a91226cb1071c Mon Sep 17 00:00:00 2001
+From 20dd27b2f687a8218c0316a9af778fae07f603e1 Mon Sep 17 00:00:00 2001
 From: Miao Wang <shankerwangmiao@gmail.com>
 Date: Thu, 18 Jul 2024 18:55:59 +0800
-Subject: [PATCH 07/22] AOSCOS: loongarch: parse BPI data and add memory
+Subject: [PATCH 06/29] AOSCOS: loongarch: parse BPI data and add memory
  mapping
 
 On legacy firmwares, the memory mapping information passed in the EFI
@@ -450,7 +450,7 @@ index 3efd2b4..38a1074 100644
  		return -EINVAL;
  
 diff --git a/arch/loongarch/kernel/setup.c b/arch/loongarch/kernel/setup.c
-index 839b23e..948263a 100644
+index 6fa4a22..9897a23 100644
 --- a/arch/loongarch/kernel/setup.c
 +++ b/arch/loongarch/kernel/setup.c
 @@ -49,6 +49,8 @@
@@ -462,7 +462,7 @@ index 839b23e..948263a 100644
  #define SMBIOS_BIOSSIZE_OFFSET		0x09
  #define SMBIOS_BIOSEXTERN_OFFSET	0x13
  #define SMBIOS_FREQLOW_OFFSET		0x16
-@@ -597,6 +599,7 @@ void __init setup_arch(char **cmdline_p)
+@@ -600,6 +602,7 @@ void __init setup_arch(char **cmdline_p)
  	init_environ();
  	efi_init();
  	fdt_setup();
@@ -471,7 +471,7 @@ index 839b23e..948263a 100644
  	pagetable_init();
  	bootcmdline_init(cmdline_p);
 diff --git a/arch/loongarch/kernel/smp.c b/arch/loongarch/kernel/smp.c
-index 64a048f..c403874 100644
+index d4b5d1b..f4f6881 100644
 --- a/arch/loongarch/kernel/smp.c
 +++ b/arch/loongarch/kernel/smp.c
 @@ -36,6 +36,8 @@
@@ -489,9 +489,9 @@ index 64a048f..c403874 100644
  	entry = __pa_symbol((unsigned long)&smpboot_entry);
 +	if (loongarch_have_legacy_bpi())
 +		entry = (unsigned long)&smpboot_entry;
- 	cpuboot_data.stack = (unsigned long)__KSTK_TOS(idle);
- 	cpuboot_data.thread_info = (unsigned long)task_thread_info(idle);
- 
+ 	cpuboot_data.task = (unsigned long)idle;
+ 	cpuboot_data.stack = (unsigned long)task_pt_regs(idle);
+ 	cpuboot_data.offset = per_cpu_offset(cpu);
 -- 
-2.53.0
+2.54.0
 
