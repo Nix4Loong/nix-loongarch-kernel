@@ -1,7 +1,7 @@
-From bfc50d38045a1c6a0db1c47d05797f549c702a47 Mon Sep 17 00:00:00 2001
+From 1dbcab68e43e5b09ae6671ba0e818b435122cb47 Mon Sep 17 00:00:00 2001
 From: Xi Ruoyao <xry111@xry111.site>
 Date: Sat, 16 Aug 2025 09:50:44 +0800
-Subject: [PATCH 20/22] AOSCOS: ACPI / scan: Add pwm_lookup_entry for PWM3 on
+Subject: [PATCH 19/29] AOSCOS: ACPI / scan: Add pwm_lookup_entry for PWM3 on
  LS7A
 
 On LoongArch laptops using LG110 GPU for display, LS7A PWM3 is used for
@@ -9,6 +9,7 @@ backlight brightness control.  Thus we need to call pwm_add_table() so
 that the loonggpu driver can find the PWM for controlling the backlight.
 
 Signed-off-by: Xi Ruoyao <xry111@xry111.site>
+Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
 ---
  drivers/acpi/Makefile                        |  1 +
  drivers/acpi/internal.h                      |  6 +++
@@ -103,10 +104,10 @@ index 0000000..5363747
 +	acpi_scan_add_handler(&ls7a_pwm_handler);
 +}
 diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
-index e8cdbdb..0bfb58c 100644
+index 99af95f..9ef22bb 100644
 --- a/drivers/acpi/scan.c
 +++ b/drivers/acpi/scan.c
-@@ -2834,6 +2834,7 @@ void __init acpi_scan_init(void)
+@@ -2839,6 +2839,7 @@ void __init acpi_scan_init(void)
  	acpi_pnp_init();
  	acpi_power_resources_init();
  	acpi_init_lpit();
@@ -115,5 +116,5 @@ index e8cdbdb..0bfb58c 100644
  	acpi_scan_add_handler(&generic_device_handler);
  
 -- 
-2.53.0
+2.54.0
 

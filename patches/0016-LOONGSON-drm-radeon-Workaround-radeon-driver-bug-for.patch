@@ -1,7 +1,8 @@
-From 6989b6cb2796b27eff6cab37fe648c4850810558 Mon Sep 17 00:00:00 2001
+From 0de0f3fd9b84fd40852d6a85f39b106ad75e04ac Mon Sep 17 00:00:00 2001
 From: Huacai Chen <chenhuacai@loongson.cn>
 Date: Mon, 22 Feb 2021 10:53:47 +0800
-Subject: [PATCH 17/22] drm/radeon: Workaround radeon driver bug for Loongson
+Subject: [PATCH 16/29] LOONGSON: drm/radeon: Workaround radeon driver bug for
+ Loongson
 
 Radeon driver can not handle the interrupt is faster than DMA data, so
 irq handler must update an old ih.rptr value in IH_RB_RPTR register to
@@ -9,6 +10,10 @@ enable interrupt again when interrupt is faster than DMA data.
 
 Signed-off-by: Huacai Chen <chenhuacai@loongson.cn>
 Signed-off-by: Zhijie Zhang <zhangzhijie@loongson.cn>
+
+Link: https://github.com/chenhuacai/linux/commit/6266d0082b020ad68a3b3c6f314ba299b9d06d3d
+Signed-off-by: Kexy Biscuit <kexybiscuit@aosc.io>
+Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
 ---
  drivers/gpu/drm/radeon/cik.c       | 1 +
  drivers/gpu/drm/radeon/evergreen.c | 1 +
@@ -17,10 +22,10 @@ Signed-off-by: Zhijie Zhang <zhangzhijie@loongson.cn>
  4 files changed, 4 insertions(+)
 
 diff --git a/drivers/gpu/drm/radeon/cik.c b/drivers/gpu/drm/radeon/cik.c
-index 0c5bdf8..19ae471 100644
+index d542bfe..33a3ba9 100644
 --- a/drivers/gpu/drm/radeon/cik.c
 +++ b/drivers/gpu/drm/radeon/cik.c
-@@ -8090,6 +8090,7 @@ int cik_irq_process(struct radeon_device *rdev)
+@@ -8101,6 +8101,7 @@ int cik_irq_process(struct radeon_device *rdev)
  	if (queue_thermal)
  		schedule_work(&rdev->pm.dpm.thermal.work);
  	rdev->ih.rptr = rptr;
@@ -53,7 +58,7 @@ index 8b62f7f..88e38fb 100644
  
  	/* make sure wptr hasn't changed while processing */
 diff --git a/drivers/gpu/drm/radeon/si.c b/drivers/gpu/drm/radeon/si.c
-index 26197ac..2d7eeb7 100644
+index 4681ff2..dee3d62 100644
 --- a/drivers/gpu/drm/radeon/si.c
 +++ b/drivers/gpu/drm/radeon/si.c
 @@ -6423,6 +6423,7 @@ int si_irq_process(struct radeon_device *rdev)
@@ -65,5 +70,5 @@ index 26197ac..2d7eeb7 100644
  
  	/* make sure wptr hasn't changed while processing */
 -- 
-2.53.0
+2.54.0
 

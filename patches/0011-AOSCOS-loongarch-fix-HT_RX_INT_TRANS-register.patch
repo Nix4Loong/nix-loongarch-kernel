@@ -1,7 +1,7 @@
-From 4beb30352eb70d2ec4bb77fdf4e04895574bc22e Mon Sep 17 00:00:00 2001
+From d6c040097f55cb1c4cdf56a87f51cccf4fbabfec Mon Sep 17 00:00:00 2001
 From: Miao Wang <shankerwangmiao@gmail.com>
 Date: Tue, 13 Aug 2024 22:33:01 +0800
-Subject: [PATCH 12/22] AOSCOS: loongarch: fix HT_RX_INT_TRANS register
+Subject: [PATCH 11/29] AOSCOS: loongarch: fix HT_RX_INT_TRANS register
 
 On machines with legacy firmware with BPI01000 version, the
 HT_RX_INT_TRANS register on the node 5, i.e. the node connected with the
@@ -14,6 +14,7 @@ to the EXT_IOI_SEND_OFF register on the corresponding node.
 
 Signed-off-by: Miao Wang <shankerwangmiao@gmail.com>
 Signed-off-by: Kexy Biscuit <kexybiscuit@aosc.io>
+Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
 ---
  arch/loongarch/kernel/legacy_boot.c | 24 ++++++++++++++++++++++++
  1 file changed, 24 insertions(+)
@@ -61,5 +62,5 @@ index 2888e2b..204b331 100644
  
  void acpi_arch_os_table_override (struct acpi_table_header *existing_table, struct acpi_table_header **new_table){
 -- 
-2.53.0
+2.54.0
 
